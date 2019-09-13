@@ -4,11 +4,15 @@ namespace Core.Storages
 {
     public class StorageType<K, V> : IStorageType<K, V>
     {
-        public IDictionary<K, V> Values => new Dictionary<K, V>();
+        public StorageType() => _values = new Dictionary<K, V>();
 
-        public void Clear() => Values.Clear();
-        public V Get(K key) => Values[key];
-        public void Set(K key, V value) => Values[key] = value;
-        public bool TryGet(K key, out V value) => Values.TryGetValue(key, out value);
+        private IDictionary<K, V> _values { get; }
+
+        public IEnumerable<K> Keys => _values.Keys;
+
+        public void Clear() => _values.Clear();
+        public V Get(K key) => _values[key];
+        public void Set(K key, V value) => _values[key] = value;
+        public bool TryGet(K key, out V value) => _values.TryGetValue(key, out value);
     }
 }

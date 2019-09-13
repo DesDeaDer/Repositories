@@ -4,18 +4,20 @@ namespace Core.Storages
 {
     public class StorageStringKey : IStorage<string>
     {
-        Hashtable StorageTypes => new Hashtable()
-        {
-            {  typeof(bool), Bools },
-            {  typeof(int), Ints },
-            {  typeof(float), Floats },
-            {  typeof(string), Strings },
-        };
+        Hashtable StorageTypes;
 
-        public IStorageType<string, bool> Bools => new StorageType<string, bool>();
-        public IStorageType<string, int> Ints => new StorageType<string, int>();
-        public IStorageType<string, float> Floats => new StorageType<string, float>();
-        public IStorageType<string, string> Strings => new StorageTypeStringString();
+        public StorageStringKey()
+        {
+            StorageTypes = new Hashtable()
+            {
+                {  typeof(bool), new StorageType<string, bool>() },
+                {  typeof(int), new StorageType<string, int>() },
+                {  typeof(float), new StorageType<string, float>() },
+                {  typeof(string), new StorageTypeStringString() },
+            };
+        }
+
+        public StorageStringKey(Hashtable storageTypes) => StorageTypes = storageTypes;
 
         public void ClearAll()
         {

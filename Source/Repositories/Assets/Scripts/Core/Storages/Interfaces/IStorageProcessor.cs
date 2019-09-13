@@ -4,5 +4,7 @@
     {
         void Save(IStorage<K> storage);
         void Load(IStorage<K> storage);
+        void Clear(IStorage<K> storage);
+        void Clear();
     }
 }

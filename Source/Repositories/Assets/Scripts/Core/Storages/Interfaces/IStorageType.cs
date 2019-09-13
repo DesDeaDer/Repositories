@@ -1,9 +1,13 @@
-﻿namespace Core.Storages
+﻿using System.Collections.Generic;
+
+namespace Core.Storages
 {
     public interface IStorageType<K, V> : ICleaner
     {
         bool TryGet(K key, out V value);
         V Get(K key);
-        void Set(K key, V value);
+        void Set(K key, V value = default);
+
+        IEnumerable<K> Keys { get; }
     }
 }

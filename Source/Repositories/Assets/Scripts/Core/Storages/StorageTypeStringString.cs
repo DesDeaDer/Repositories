@@ -1,19 +1,28 @@
-﻿using System.Collections.Specialized;
+﻿using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Linq; 
 
 namespace Core.Storages
 {
     public class StorageTypeStringString : IStorageType<string, string>
     {
-        public StringDictionary Values => new StringDictionary();
+        private StringDictionary _values;
 
-        public void Clear() => Values.Clear();
-        public string Get(string key) => Values[key];
-        public void Set(string key, string value) => Values[key] = value;
+        public StorageTypeStringString()
+        {
+            _values = new StringDictionary();
+        }
+
+        public IEnumerable<string> Keys => _values.Keys.Cast<string>();
+
+        public void Clear() => _values.Clear();
+        public string Get(string key) => _values[key];
+        public void Set(string key, string value) => _values[key] = value.Log("StorageTypeStringString Set '" + value + "'");
         public bool TryGet(string key, out string value)
         {
-            if (Values.ContainsKey(key))
+            if (_values.ContainsKey(key))
             {
-                value = Values[key];
+                value = _values[key];
                 return true;
             }
             value = null;

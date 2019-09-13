@@ -49,23 +49,23 @@ public class DemoScript : MonoBehaviour
         PlayerPrefsStorageProcessor.Load(storage1);
 
         {
-            if (storage1.Get<string>().TryGet(KeyString2, out var value).Log())
+            if (storage1.Get<string>().TryGet(KeyString2, out var value))
             {
-                Debug.Log(value.ToString());
+                value.Log();
             }
         }
 
         {
-            if (storage1.Get<bool>().TryGet(KeyBool1, out var value).Log())
+            if (storage1.Get<bool>().TryGet(KeyBool1, out var value))
             {
-                Debug.Log(value.ToString());
+                value.Log();
             }
         }
 
         {
-            if (storage1.Get<float>().TryGet(KeyFloat2, out var value).Log())
+            if (storage1.Get<float>().TryGet(KeyFloat2, out var value))
             {
-                Debug.Log(value.ToString());
+                value.Log();
             }
         }
 

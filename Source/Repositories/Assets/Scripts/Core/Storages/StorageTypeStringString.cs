@@ -17,7 +17,7 @@ namespace Core.Storages
 
         public void Clear() => _values.Clear();
         public string Get(string key) => _values[key];
-        public void Set(string key, string value) => _values[key] = value.Log("StorageTypeStringString Set '" + value + "'");
+        public void Set(string key, string value) => _values[key] = value;
         public bool TryGet(string key, out string value)
         {
             if (_values.ContainsKey(key))
